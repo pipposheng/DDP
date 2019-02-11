@@ -1,0 +1,41 @@
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r echo=FALSE}
+today <- format(Sys.Date(),format = "%B %d %Y")
+```
+## `r today`
+```{r echo=FALSE}
+library(leaflet)
+
+set.seed(2019-02-11)
+EaglesIcon <- makeIcon(
+  iconUrl = "https://www.logolynx.com/images/logolynx/b8/b8205e96cde93824765ee08ebb56e416.jpeg",
+  iconWidth = 25, iconHeight = 25,
+  iconAnchorX = 15, iconAnchorY = 15
+)
+
+PhilliesIcon <- makeIcon(
+  iconUrl = "http://www.cndajin.com/data/wls/27/5570323.gif",
+  iconWidth = 25, iconHeight = 25,
+  iconAnchorX = 15, iconAnchorY = 15
+) 
+
+SeventysixersIcon <- makeIcon(
+  iconUrl = "https://i2.wp.com/phillyinfluencer.com/wp-content/uploads/2015/12/Screen_Shot_2015-05-12_at_11.26.14.2e16d0ba.fill-735x490.png?w=538",
+  iconWidth = 25, iconHeight = 25,
+  iconAnchorX = 15, iconAnchorY = 15
+)
+
+ListIcons <- iconList(EaglesIcon,PhilliesIcon,SeventysixersIcon)
+
+EaglesLatLong <- data.frame(lat = c(39.900792, 39.906091, 39.901243), lng = c(-75.167495, -75.166520, -75.171992))
+EaglesLatLong %>% 
+  leaflet() %>%
+  addTiles() %>%
+  addMarkers(icon = ListIcons,
+    popup = c("Eagles NFL Stadium","Phillies MLB Stadium","76ers NBA Stadium"))
+```
+
